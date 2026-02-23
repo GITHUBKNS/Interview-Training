@@ -104,7 +104,11 @@ export default function SetupPage() {
         return;
       }
 
-      sessionStorage.setItem('interviewSession', JSON.stringify(data));
+      sessionStorage.setItem('interviewSession', JSON.stringify({
+        ...data,
+        company: company.trim(),
+        position: position.trim(),
+      }));
       router.push(`/interview?session=${data.sessionId}`);
     } catch {
       setError('Something went wrong. Please try again.');
